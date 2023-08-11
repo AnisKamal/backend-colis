@@ -1,5 +1,6 @@
 package com.colis.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -18,12 +19,14 @@ public class PostEntity extends AbstractEntity {
     private String regionDepart;
 
     @Column(nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime dateRegionDepart;
 
     @Column(nullable = false)
     private String regionDestination;
 
     @Column(nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime dateRegionDestination;
 
     @Column(nullable = false)
@@ -40,5 +43,7 @@ public class PostEntity extends AbstractEntity {
 
     @Column(nullable = false)
     private boolean activity ;
+
+    private String description;
 
 }
