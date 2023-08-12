@@ -1,6 +1,8 @@
 package com.colis.controller;
 
 import com.colis.dto.PostDTO;
+import com.colis.dto.ProfileDTO;
+import com.colis.repositories.ProfileReopsitory;
 import com.colis.services.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,5 +30,6 @@ public class PostController {
             return new ResponseEntity<>("Success", HttpStatus.OK);
 
     }
+
 
 }

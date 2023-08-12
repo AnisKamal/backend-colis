@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Entity
 @Table(
-        name = "t_user",
+        name = "t_account",
         uniqueConstraints = {
                 @UniqueConstraint(
                         name="user_email_unique",
@@ -16,12 +16,13 @@ import lombok.Data;
                 )
         })
 @Data
-public class UserEntity extends AbstractEntity{
+public class AccountEntity extends AbstractEntity{
 
     @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
+
 
 }
