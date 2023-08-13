@@ -1,9 +1,7 @@
 package com.colis.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -45,5 +43,10 @@ public class PostEntity extends AbstractEntity {
     private boolean activity ;
 
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "id_profile")
+    private ProfileEntity profile;
+
 
 }

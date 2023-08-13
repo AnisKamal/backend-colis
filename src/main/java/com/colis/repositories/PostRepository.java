@@ -11,4 +11,5 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<PostEntity, String> {
    List<PostEntity> findAllByDateRegionDepartLessThanAndActivityIsTrue(LocalDateTime dateTime);
 
+   List<PostEntity> findAllByProfile_Id(String id);
 }

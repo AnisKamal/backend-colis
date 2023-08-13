@@ -8,10 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,12 +23,21 @@ public class PostController {
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody PostDTO post){
 
-            log.info("save post ...");
+            log.info(" save post ");
             postService.savePost(post);
-            log.info("---- Post : Post save success  ");
+            log.info(" Post : Post save success  ");
             return new ResponseEntity<>("Success", HttpStatus.OK);
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<List<PostDTO>> findByUser(@PathVariable String id){
+        log.info("find Post by user ");
+
+        List<PostDTO> list = postService.findPostByUser(id);
+
+        log.info("Post : fetch post by user success ");
+        return new ResponseEntity<>(list, HttpStatus.OK) ;
+    }
 
 }
