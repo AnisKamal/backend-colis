@@ -30,6 +30,11 @@ public class PostService {
         return mapper.map(postRepository.findAllByProfile_Id(id));
     }
 
+    public List<PostDTO> findLastPosts(){
+         return mapper.map(postRepository.findTop5ByOrderByCreatedDateAsc());
+    }
+
+
     public void DesactivePost(){
         log.info(" ************** appele de la methode de desactivation **************");
         List<PostEntity> posts = (ArrayList<PostEntity>) postRepository.findAllByDateRegionDepartLessThanAndActivityIsTrue(LocalDateTime.now());

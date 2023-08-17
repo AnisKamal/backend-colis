@@ -20,6 +20,18 @@ public class PostController {
 
     private final PostService postService;
 
+    @GetMapping("")
+    public ResponseEntity<List<PostDTO>> findLastPosts(){
+
+        log.info("fetch  5 last posts ");
+
+        List<PostDTO> listPost =  postService.findLastPosts();
+
+        log.info("Post : fetch 5 last posts success ");
+
+        return new ResponseEntity<>(listPost, HttpStatus.OK);
+    }
+
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody PostDTO post){
 
