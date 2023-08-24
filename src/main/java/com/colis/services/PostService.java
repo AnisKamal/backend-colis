@@ -8,11 +8,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -31,17 +30,22 @@ public class PostService {
     }
 
     public List<PostDTO> findLastPosts(){
-         return mapper.map(postRepository.findTop5ByOrderByCreatedDateAsc());
+         return mapper.map(postRepository.findTop20ByActivityIsTrueOrderByCreatedDateDesc());
     }
 
+    public List<PostDTO> findPostSearch(String regionDepart, String regionDestination){
+
+        return mapper.map(postRepository.findAllByRegionDepartAndRegionDestinationAndActivityIsTrue(regionDepart, regionDestination));
+
+    }
 
     public void DesactivePost(){
-        log.info(" ************** appele de la methode de desactivation **************");
+        log.info(" ************** appele de la methode de desactivation des posts **************");
         List<PostEntity> posts = (ArrayList<PostEntity>) postRepository.findAllByDateRegionDepartLessThanAndActivityIsTrue(LocalDateTime.now());
         posts.stream().forEach(post -> {
             post.setActivity(false);
             postRepository.save(post);
         });
-        log.info("********** fin de l'appele de la methde de desactivation ********");
+        log.info("********** fin de l'appele de la methde de desactivation posts ********");
     }
 }

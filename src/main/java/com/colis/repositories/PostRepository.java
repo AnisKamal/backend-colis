@@ -13,5 +13,8 @@ public interface PostRepository extends JpaRepository<PostEntity, String> {
 
    List<PostEntity> findAllByProfile_Id(String id);
 
-   List<PostEntity> findTop5ByOrderByCreatedDateAsc();
+   List<PostEntity> findTop20ByActivityIsTrueOrderByCreatedDateDesc();
+
+   List<PostEntity> findAllByRegionDepartAndRegionDestinationAndActivityIsTrue(String regionDepart, String RegionDestination);
+
 }

@@ -23,33 +23,37 @@ public class PostController {
     @GetMapping("")
     public ResponseEntity<List<PostDTO>> findLastPosts(){
 
-        log.info("fetch  5 last posts ");
+        log.info("fetch  20 last posts ");
 
         List<PostDTO> listPost =  postService.findLastPosts();
 
-        log.info("Post : fetch 5 last posts success ");
+        log.info("Post : fetch 20 last posts success ");
 
         return new ResponseEntity<>(listPost, HttpStatus.OK);
     }
 
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody PostDTO post){
-
             log.info(" save post ");
             postService.savePost(post);
             log.info(" Post : Post save success  ");
             return new ResponseEntity<>("Success", HttpStatus.OK);
-
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<List<PostDTO>> findByUser(@PathVariable String id){
         log.info("find Post by user ");
-
         List<PostDTO> list = postService.findPostByUser(id);
-
         log.info("Post : fetch post by user success ");
-        return new ResponseEntity<>(list, HttpStatus.OK) ;
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/{regionDepart}/{regionDestination}")
+    public ResponseEntity<List<PostDTO>> findPostSearch(@PathVariable String regionDepart, @PathVariable String regionDestination){
+
+      List<PostDTO> list = postService.findPostSearch(regionDepart, regionDestination);
+
+      return new ResponseEntity<>(list, HttpStatus.OK) ;
     }
 
 }
