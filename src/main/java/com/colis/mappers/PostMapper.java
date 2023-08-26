@@ -17,5 +17,5 @@ public interface PostMapper {
 
     List<PostDTO> map(List<PostEntity> posts);
 
-    //List<PostEntity> map(List<PostDTO> posts);
+
 }

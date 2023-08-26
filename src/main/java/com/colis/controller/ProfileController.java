@@ -28,4 +28,5 @@ public class ProfileController {
         log.info("....... profile : profile save success ");
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
+
 }

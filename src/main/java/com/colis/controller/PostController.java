@@ -50,10 +50,11 @@ public class PostController {
 
     @GetMapping("/{regionDepart}/{regionDestination}")
     public ResponseEntity<List<PostDTO>> findPostSearch(@PathVariable String regionDepart, @PathVariable String regionDestination){
-
+        log.info("search post ");
       List<PostDTO> list = postService.findPostSearch(regionDepart, regionDestination);
+      log.info("post : post search success ");
+      return new ResponseEntity<>(list, HttpStatus.OK);
 
-      return new ResponseEntity<>(list, HttpStatus.OK) ;
     }
 
 }

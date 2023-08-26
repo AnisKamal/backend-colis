@@ -1,6 +1,5 @@
 package com.colis.dto;
 
-public record ProfileDTO(String nom,
-                         String prenom,
+public record ProfileDTO(String fullName,
                          String photoProfile) {
 }

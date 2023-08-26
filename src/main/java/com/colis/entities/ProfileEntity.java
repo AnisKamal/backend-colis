@@ -18,9 +18,7 @@ import java.util.List;
 public class ProfileEntity extends AbstractEntity{
 
     @Column(nullable = false)
-    private String nom;
-    @Column(nullable = false)
-    private String prenom;
+    private String fullName;
 
     private String photoProfile;
 
@@ -29,5 +27,11 @@ public class ProfileEntity extends AbstractEntity{
             cascade = CascadeType.ALL
     )
     List<PostEntity> posts;
+
+    @OneToMany(
+            mappedBy = "profile",
+            cascade = CascadeType.ALL
+    )
+    List<ContactEntity> contacts ;
 
 }

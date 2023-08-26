@@ -16,5 +16,3 @@ spring:
       enabled: false
     jdbc:
       initialize-schema: always
-
-
