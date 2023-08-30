@@ -22,6 +22,9 @@ public class ProfileEntity extends AbstractEntity{
 
     private String photoProfile;
 
+    @Column(nullable = false)
+    private String NTelephone;
+
     @OneToMany(
             mappedBy = "profile",
             cascade = CascadeType.ALL
