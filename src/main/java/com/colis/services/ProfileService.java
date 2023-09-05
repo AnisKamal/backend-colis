@@ -6,6 +6,7 @@ import com.colis.mappers.ProfileMapper;
 import com.colis.repositories.ProfileReopsitory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +22,8 @@ import java.util.UUID;
 @Slf4j
 public class ProfileService {
 
-    private static String UPLOAD_DIR = "src/main/resources/static/images/";
+    @Value("${media.images.imagesProfile.directory}")
+    private static String UPLOAD_DIR ;
 
     private final ProfileReopsitory profileReopsitory;
 

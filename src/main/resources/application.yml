@@ -9,10 +9,16 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
         dialect: org.hibernate.dialect.PostgreSQL81Dialect
   batch:
     job:
       enabled: false
     jdbc:
       initialize-schema: always
+
+media:
+  images:
+    imagesProfile:
+      directory: ../imagesProfile
+      url: http://192.168.11.104:8080/imagesProfile/
