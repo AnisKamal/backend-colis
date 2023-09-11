@@ -23,7 +23,7 @@ import java.util.UUID;
 public class ProfileService {
 
     @Value("${media.images.imagesProfile.directory}")
-    private static String UPLOAD_DIR ;
+    private String UPLOAD_DIR ;
 
     private final ProfileReopsitory profileReopsitory;
 
@@ -31,11 +31,17 @@ public class ProfileService {
 
     public void saveProfile(ProfileDTO profile, MultipartFile imageFile)  throws IOException {
 
-        String fileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
+        String fileName =   null;
+
+        if(!imageFile.getOriginalFilename().equals("")){
+            fileName =  imageFile.getOriginalFilename();
+
+
         Path filePath = Paths.get(UPLOAD_DIR, fileName);
 
         try (OutputStream os = Files.newOutputStream(filePath)) {
             os.write(imageFile.getBytes());
+        }
         }
         // profile.setPhotoProfile(fileName);
         // profileReopsitory.save(mapper.map(profile));
