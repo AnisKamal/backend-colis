@@ -37,4 +37,7 @@ public class ProfileEntity extends AbstractEntity{
     )
     List<ContactEntity> contacts ;
 
+    @OneToOne(mappedBy = "profile")
+    private UserEntity user;
+
 }
