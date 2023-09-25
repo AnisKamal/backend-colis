@@ -63,6 +63,6 @@ public class PostService {
             post.setActivity(false);
             postRepository.save(post);
         });
-        log.info("********** fin de l'appele de la methde de desactivation posts ********");
+        log.info("********** fin de l'appele de la methode de desactivation posts ********");
     }
 }

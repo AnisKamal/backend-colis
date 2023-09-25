@@ -1,5 +1,6 @@
 package com.colis.config.security;
 
+import com.colis.repositories.TokenRepository;
 import com.colis.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -25,6 +26,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtService jwtUtils;
     private final UserDetailsService userDetailsService;
     private final UserRepository userRepository;
+    private final TokenRepository tokenRepository;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
@@ -43,12 +45,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         userEmail = jwtUtils.extractUsername(jwtToken);
 
         if(userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = userRepository.findUserEntityByEmail(userEmail);
-//            var isTokenValid = tokenRepository.findByToken(jwt)
-//                    .map(t -> !t.isExpired() && !t.isRevoked())
-//                    .orElse(false);
+            UserDetails userDetails = userRepository.findByEmail(userEmail).orElseThrow();
+            boolean isTokenValid = tokenRepository.findByToken(jwtToken)
+                    .map(t -> !t.isExpired() && !t.isRevoked())
+                    .orElse(false);
 
-            if(jwtUtils.isTokenValid(jwtToken, userDetails)) {
+            if(jwtUtils.isTokenValid(jwtToken, userDetails) && isTokenValid) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);

@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(
@@ -29,6 +30,9 @@ public class UserEntity extends AbstractEntity implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_profile")
     private ProfileEntity profile;
+
+    @OneToMany(mappedBy = "user")
+    private List<TokenEntity> tokens ;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

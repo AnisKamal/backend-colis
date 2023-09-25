@@ -6,6 +6,7 @@ import com.colis.dto.AuthenticationResponseDTO;
 import com.colis.dto.RegisterRequestDTO;
 import com.colis.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("api/v1/auth")
 public class AuthenticationController {
@@ -26,7 +28,10 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponseDTO> authenticate(@RequestBody AuthenticationRequestDTO request){
-        return ResponseEntity.ok(authenticationService.authenticate(request));
+        log.info("Authentication with email and  password");
+        AuthenticationResponseDTO response = authenticationService.authenticate(request);
+        log.info("Authentication success ! ");
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/register")
