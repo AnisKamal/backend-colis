@@ -5,6 +5,8 @@ import com.colis.dto.AuthenticationRequestDTO;
 import com.colis.dto.AuthenticationResponseDTO;
 import com.colis.dto.RegisterRequestDTO;
 import com.colis.services.AuthenticationService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 @RestController
 @Slf4j
@@ -37,6 +41,13 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponseDTO> register(@RequestBody RegisterRequestDTO request){
         return  ResponseEntity.ok(authenticationService.register(request)) ;
+    }
+
+    @PostMapping("/refresh-token")
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response)throws IOException {
+        log.info("call of refresh token ");
+        authenticationService.refreshToken(request, response);
+        log.info("refresh token success ");
     }
 
 }

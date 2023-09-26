@@ -22,10 +22,9 @@ public class LogoutService implements LogoutHandler {
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
-        log.info("execution de mon logout : ****************");
+        log.info("deconnexion de l utilisateur ");
         if(authHeader == null || !authHeader.startsWith("Bearer ")){
-            log.info("execution de ma condition **** ");
-            log.info(authHeader);
+            log.info("echec de la deconnexion");
             return;
         }
         jwt = authHeader.substring(7);
@@ -36,6 +35,8 @@ public class LogoutService implements LogoutHandler {
             storedToken.setRevoked(true);
             tokenRepository.save(storedToken);
             SecurityContextHolder.clearContext();
+            log.info("deconnexion de l utilisateur reussi ");
         }
+
     }
 }
