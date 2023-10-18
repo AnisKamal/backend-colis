@@ -32,7 +32,7 @@ public class PostService {
     }
 
     public List<PostDTO> findPostByUser(String id){
-        return mapper.map(postRepository.findAllByProfile_Id(id));
+        return mapper.map(postRepository.findAllByUser_Id(id));
     }
 
     public List<PostDTO> findLastPosts(){
