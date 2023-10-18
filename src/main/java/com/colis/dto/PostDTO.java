@@ -3,9 +3,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
-public record PostDTO(String regionDepart,
+public record PostDTO(
+                    String id ,
 
-                      LocalDateTime dateRegionDepart,
+                    String regionDepart,
+
+                    LocalDateTime dateRegionDepart,
                       String regionDestination,
 
                       LocalDateTime dateRegionDestination,
