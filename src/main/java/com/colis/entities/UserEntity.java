@@ -1,14 +1,13 @@
 package com.colis.entities;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 @Entity
 @Table(name = "t_user",
@@ -30,5 +29,11 @@ public class UserEntity extends AbstractEntity {
     private String name;
 
     private String urlPhoto;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL
+    )
+    private List<PostEntity> posts;
 
 }

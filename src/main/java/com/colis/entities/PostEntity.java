@@ -48,5 +48,8 @@ public class PostEntity extends AbstractEntity {
     @JoinColumn(name = "id_profile")
     private ProfileEntity profile;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
 }

@@ -15,7 +15,8 @@ public record PostDTO(String regionDepart,
                       int kiloRestant,
                       boolean activity,
                       String description,
-                      ProfileDTO profile
+
+                      UserDTO user
 ) {
 
 }

@@ -23,10 +23,14 @@ public class AuthenticationService {
 
     public UserDTO Authenticate(UserDTO user){
         Optional<UserEntity> userEntity= userRepository.findUserEntityByEmail(user.email());
-        if(userEntity.isEmpty())
+        if(userEntity.isEmpty()){
+            log.info("save user ");
             return mapper.map(userService.saveUser(user));
-        else
+        }
+        else{
+            log.info("user exist ");
             return mapper.map(userEntity.get());
+        }
     }
 
 }
