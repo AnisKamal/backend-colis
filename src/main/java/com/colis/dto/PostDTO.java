@@ -19,6 +19,8 @@ public record PostDTO(
                       boolean activity,
                       String description,
 
+                      String NTelephone,
+
                       UserDTO user
 ) {
 

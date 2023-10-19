@@ -1,6 +1,7 @@
 package com.colis.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -43,6 +44,9 @@ public class PostEntity extends AbstractEntity {
     private boolean activity ;
 
     private String description;
+
+    @Column(nullable = false)
+    private String NTelephone;
 
     @ManyToOne
     @JoinColumn(name = "id_profile")
