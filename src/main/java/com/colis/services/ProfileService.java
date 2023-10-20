@@ -22,7 +22,7 @@ import java.util.UUID;
 @Slf4j
 public class ProfileService {
 
-    @Value("${media.images.imagesProfile.directory}")
+    @Value("${media.images.images-profile.directory}")
     private String UPLOAD_DIR ;
 
     private final ProfileReopsitory profileReopsitory;

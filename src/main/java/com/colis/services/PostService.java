@@ -24,8 +24,8 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    @Value("${media.images.imagesProfile.url}")
-    private String urlImage ;
+/*    @Value("${media.images.imagesProfile.url}")
+    private String urlImage ;*/
 
     public PostEntity  savePost(PostDTO postDTO){
         return postRepository.save(mapper.map(postDTO));
@@ -39,10 +39,10 @@ public class PostService {
         List<PostEntity> listPost = postRepository.findTop20ByActivityIsTrueOrderByCreatedDateDesc();
       //  listPost.stream().forEach(post -> post.getProfile().setPhotoProfile("http://192.168.11.104:8080/images/" + post.getProfile().getPhotoProfile()));
 //        listPost.stream().filter(post -> post != null) ;
-        listPost.stream().forEach(post -> {
+/*        listPost.stream().forEach(post -> {
             if(post.getUser().getUrlPhoto() != null )
                 post.getUser().setUrlPhoto( urlImage + post.getUser().getUrlPhoto());
-        });
+        });*/
 
       //  log.info("ma liste " + listPost.toString());
 
