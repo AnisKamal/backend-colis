@@ -16,6 +16,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,7 +39,7 @@ public class UserService {
         return userRepository.save(mapper.map(user));
     }
 
-    public void updateImageProfile(String id , MultipartFile imageFile) throws IOException {
+    public UserDTO updateImageProfile(String id , MultipartFile imageFile) throws IOException {
         String fileName =   null;
         if(!imageFile.getOriginalFilename().equals("")){
             fileName =  UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
@@ -50,8 +51,10 @@ public class UserService {
         if(fileName != null){
             Optional<UserEntity> user = userRepository.findById(id);
             user.get().setUrlPhoto(url+fileName);
-            userRepository.save(user.get());
+            UserEntity muser =  userRepository.save(user.get());
+            return mapper.map(muser);
         }
+        return null;
 
     }
 

@@ -1,5 +1,6 @@
 package com.colis.controller;
 
+import com.colis.dto.UserDTO;
 import com.colis.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,10 +20,10 @@ public class UserController {
     private final UserService userService;
 
     @PutMapping("/update-image/{id}")
-    public ResponseEntity<String> updateImage(@PathVariable String id, @RequestParam("image-profile") MultipartFile image) throws IOException {
+    public ResponseEntity<UserDTO> updateImage(@PathVariable String id, @RequestParam("image-profile") MultipartFile image) throws IOException {
         log.info("update image profile ");
-        userService.updateImageProfile(id, image);
+        UserDTO user = userService.updateImageProfile(id, image);
         log.info("update image success");
-        return new ResponseEntity<>("success", HttpStatus.OK) ;
+        return new ResponseEntity<>(user, HttpStatus.OK) ;
     }
 }
