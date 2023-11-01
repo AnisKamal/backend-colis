@@ -1,8 +1,6 @@
 package com.colis.controller;
 
 import com.colis.dto.PostDTO;
-import com.colis.dto.ProfileDTO;
-import com.colis.repositories.ProfileReopsitory;
 import com.colis.services.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,13 +46,20 @@ public class PostController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/{regionDepart}/{regionDestination}")
+/*    @GetMapping("/{regionDepart}/{regionDestination}")
     public ResponseEntity<List<PostDTO>> findPostSearch(@PathVariable String regionDepart, @PathVariable String regionDestination){
         log.info("search post ");
       List<PostDTO> list = postService.findPostSearch(regionDepart, regionDestination);
       log.info("post : post search success ");
       return new ResponseEntity<>(list, HttpStatus.OK);
+    }*/
 
+    @GetMapping("/search")
+    public ResponseEntity<List<PostDTO>> findPostSearch(@RequestParam("regionDepart")String depart, @RequestParam("regionDestination") String destination){
+        log.info("post search ");
+        List<PostDTO> list = postService.findPostSearch(depart,destination);
+        log.info("post : post search success ");
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
 }

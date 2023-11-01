@@ -6,14 +6,11 @@ import com.colis.mappers.PostMapper;
 import com.colis.repositories.PostRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +33,7 @@ public class PostService {
     }
 
     public List<PostDTO> findLastPosts(){
-        List<PostEntity> listPost = postRepository.findTop20ByActivityIsTrueOrderByCreatedDateDesc();
+        List<PostEntity> listPost = postRepository.findAllByActivityIsTrueOrderByCreatedDateDesc();
       //  listPost.stream().forEach(post -> post.getProfile().setPhotoProfile("http://192.168.11.104:8080/images/" + post.getProfile().getPhotoProfile()));
 //        listPost.stream().filter(post -> post != null) ;
 /*        listPost.stream().forEach(post -> {
@@ -50,10 +47,15 @@ public class PostService {
        // return null ;
     }
 
-    public List<PostDTO> findPostSearch(String regionDepart, String regionDestination){
-
-        return mapper.map(postRepository.findAllByRegionDepartAndRegionDestinationAndActivityIsTrue(regionDepart, regionDestination));
-
+    public List<PostDTO> findPostSearch(String depart, String destination){
+        if(!depart.isEmpty() && !destination.isEmpty())
+            return mapper.map(postRepository.findAllByRegionDepartAndRegionDestinationAndActivityIsTrue(depart, destination));
+        else if (!depart.isEmpty() && destination.isEmpty())
+            return mapper.map(postRepository.findAllByRegionDepartAndActivityIsTrue(depart));
+        else if (depart.isEmpty() && !destination.isEmpty())
+            return mapper.map(postRepository.findAllByRegionDestinationAndActivityIsTrue(destination));
+        else
+            return mapper.map(postRepository.findAllByActivityIsTrueOrderByCreatedDateDesc());
     }
 
     public void DesactivePost(){
