@@ -25,7 +25,8 @@ public class JobScheduler {
 
 
 
-    //@Scheduled(cron = "*/30 * * * * *")
+//    @Scheduled(cron = "*/30 * * * * *")
+    @Scheduled(cron = "* 2 0 * * *")
     public void DesactivePostProc() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
         log.info(" ------------  cron activer -------------");
         var jobToStart = context.getBean("job1", Job.class);

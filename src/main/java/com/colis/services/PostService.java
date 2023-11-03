@@ -34,28 +34,27 @@ public class PostService {
 
     public List<PostDTO> findLastPosts(){
         List<PostEntity> listPost = postRepository.findAllByActivityIsTrueOrderByCreatedDateDesc();
-      //  listPost.stream().forEach(post -> post.getProfile().setPhotoProfile("http://192.168.11.104:8080/images/" + post.getProfile().getPhotoProfile()));
-//        listPost.stream().filter(post -> post != null) ;
-/*        listPost.stream().forEach(post -> {
-            if(post.getUser().getUrlPhoto() != null )
-                post.getUser().setUrlPhoto( urlImage + post.getUser().getUrlPhoto());
-        });*/
-
-      //  log.info("ma liste " + listPost.toString());
-
          return mapper.map(listPost);
-       // return null ;
     }
 
     public List<PostDTO> findPostSearch(String depart, String destination){
-        if(!depart.isEmpty() && !destination.isEmpty())
+        if(!depart.isEmpty() && !destination.isEmpty()){
+            log.info("recherche par le pays de depart et le pays d arrivee : " +  depart + " -> " + destination);
             return mapper.map(postRepository.findAllByRegionDepartAndRegionDestinationAndActivityIsTrue(depart, destination));
-        else if (!depart.isEmpty() && destination.isEmpty())
+        }
+        else if (!depart.isEmpty() && destination.isEmpty()){
+            log.info("recherche par le pays de depart : " +  depart );
             return mapper.map(postRepository.findAllByRegionDepartAndActivityIsTrue(depart));
-        else if (depart.isEmpty() && !destination.isEmpty())
+        }
+        else if (depart.isEmpty() && !destination.isEmpty()){
+            log.info("recherche par le pays d' arrivee : " +  destination );
             return mapper.map(postRepository.findAllByRegionDestinationAndActivityIsTrue(destination));
-        else
+        }
+        else{
+            log.info("charger tout les post " );
             return mapper.map(postRepository.findAllByActivityIsTrueOrderByCreatedDateDesc());
+        }
+
     }
 
     public void DesactivePost(){

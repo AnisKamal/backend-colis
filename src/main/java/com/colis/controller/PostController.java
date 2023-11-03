@@ -21,11 +21,11 @@ public class PostController {
     @GetMapping("")
     public ResponseEntity<List<PostDTO>> findLastPosts(){
 
-        log.info("fetch  20 last posts ");
+        log.info("fetch last posts active ");
 
         List<PostDTO> listPost =  postService.findLastPosts();
 
-        log.info("Post : fetch 20 last posts success ");
+        log.info("Post : fetch  last posts success ");
 
         return new ResponseEntity<>(listPost, HttpStatus.OK);
     }
