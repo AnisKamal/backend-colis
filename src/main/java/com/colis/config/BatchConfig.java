@@ -1,4 +1,4 @@
-package com.colis.batch.config;
+package com.colis.config;
 
 import com.colis.batch.tasklet.SendProcTasklet;
 import com.colis.services.PostService;

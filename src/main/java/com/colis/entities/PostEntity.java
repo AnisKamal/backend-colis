@@ -49,10 +49,6 @@ public class PostEntity extends AbstractEntity {
     private String NTelephone;
 
     @ManyToOne
-    @JoinColumn(name = "id_profile")
-    private ProfileEntity profile;
-
-    @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
 

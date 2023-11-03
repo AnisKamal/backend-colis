@@ -1,7 +1,6 @@
 package com.colis.services;
 
 import com.colis.dto.UserDTO;
-import com.colis.entities.ProfileEntity;
 import com.colis.entities.UserEntity;
 import com.colis.mappers.UserMapper;
 import com.colis.repositories.UserRepository;
@@ -16,7 +15,6 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
