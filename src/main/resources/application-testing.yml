@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-cl4aeqhnovjs73c0lcfg-a.oregon-postgres.render.com/cocolisdb
-    #url: jdbc:postgresql://dpg-cl4aeqhnovjs73c0lcfg-a/cocolisdb
+#    url: jdbc:postgresql://dpg-cl4aeqhnovjs73c0lcfg-a.oregon-postgres.render.com/cocolisdb
+    url: jdbc:postgresql://dpg-cl4aeqhnovjs73c0lcfg-a/cocolisdb
     username: anis
     password: F5AkwSytPrdDd7bv2sZa6wHZEFwkqpgb
   jpa:
