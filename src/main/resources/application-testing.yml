@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-cl4aeqhnovjs73c0lcfg-a.oregon-postgres.render.com/cocolisdb
+    #url: jdbc:postgresql://dpg-cl4aeqhnovjs73c0lcfg-a/cocolisdb
+    username: anis
+    password: F5AkwSytPrdDd7bv2sZa6wHZEFwkqpgb
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQL81Dialect
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+
+media:
+  images:
+    images-profile:
+      directory: ../imagesProfile
+      url: http://192.168.11.101:8080/imagesProfile/
