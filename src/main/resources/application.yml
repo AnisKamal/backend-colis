@@ -1,14 +1,8 @@
-#spring:
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/colis
-#    username: postgres
-#    password: superuser
 spring:
   datasource:
-    #    url: jdbc:postgresql://dpg-cl4aeqhnovjs73c0lcfg-a.oregon-postgres.render.com/cocolisdb
-    url: jdbc:postgresql://dpg-cl4aeqhnovjs73c0lcfg-a/cocolisdb
-    username: anis
-    password: F5AkwSytPrdDd7bv2sZa6wHZEFwkqpgb
+    url: jdbc:postgresql://localhost:5432/colis
+    username: postgres
+    password: superuser
   jpa:
     hibernate:
       ddl-auto: update
