@@ -16,7 +16,6 @@ spring:
       enabled: false
     jdbc:
       initialize-schema: always
-
 media:
   images:
     images-profile:
